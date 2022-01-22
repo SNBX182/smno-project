@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html = style="height: 100%;">
+	<head>
+		<title>Sethmoor and North Orhelm</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="scripts/leaflet.css">
+		
+		<script src="scripts/leaflet.js"></script>
+		<script src="markerFiles/loreStore.js"></script>
+		<script src="markerFiles/fortStore.js"></script>
+		<script src="markerFiles/villageStore.js"></script>
+		<script src="markerFiles/cityStore.js"></script>
+		<script src="markerFiles/townStore.js"></script>
+		<script src="markerFiles/factionStore.js"></script>
+		<script src="markerFiles/provinceStore.js"></script>
+
+	</head>
+	
+	<body style="height: 100%;margin: 0;">
+		<div id="map" style="width: 100%; height: 100%; background: #ffffff;"></div>
+		<script type="text/javascript">
+
+	//Creating the Map
+		var map = L.map('map').setView([0, 0], 0);
+		L.tileLayer('map/{z}/{x}/{y}.png', {
+			continuousWorld: false,
+			noWrap: true,	
+			minZoom: 2,
+			maxZoom: 6,
+		}).addTo(map);
+		
+	//Marker Groups
+		var mg_fortress = L.layerGroup([el_miradorkeep,el_skynest,el_blightmoor,el_radridal,el_narakzig,el_irongate]);
+		var mg_city = L.layerGroup([el_mshHrt,el_rvnNst,el_qelged]);
+		var mg_town = L.layerGroup([el_estenwatch,el_stredon,el_westbiens,el_londriande,el_icarset,el_graveset,el_inggrove,el_grullfeld,el_matBal,el_arcLan,el_edPha,el_litchsor,el_mournvale]);
+		var mg_village = L.layerGroup([el_wyewood,el_blackford,el_eastwend,el_havenwood,el_stonespire,el_greycliff,el_athalar,el_degBea,el_innister,el_achyr]);
+		var mg_character = L.layerGroup([el_octavia,el_illanor,el_lordOsyth,el_nitric,el_stoneShaper,el_OR, el_Hrethic,el_Collector, el_stMathe, el_stArchi, el_stEdu, el_stDeg, el_CUXI]);
+		var mg_faction = L.layerGroup([el_splicer,el_thirassOrder,el_skybraceTalons, el_BFC, el_cathar, el_inquiz, el_WH, el_SS, el_VigTho, el_Guides, el_ChildInk, el_OraBeyo, el_ShadMech]);
+		var mg_province = L.layerGroup([el_provEsten, el_provQuith, el_provMira, el_provDisgar, el_provSen, el_provLonval, el_provOcho, el_provHast, el_provItu, el_provWit, el_provCant,el_provIx, el_provFell, el_provSB, el_provDG, el_provGB, el_provCradle]);
+	//Marker Overlay
+		var overlays = {
+			"<b>Provinces</b>"		: mg_province,
+			"<b>Fortresses</b>" 	: mg_fortress,
+			"<b>Cities</b>" 		: mg_city,
+			"<b>Towns</b>"			: mg_town,
+			"<b>Villages</b>"		: mg_village,
+			"<b>Characters</b>"		: mg_character,
+			"<b>Factions</b>"		: mg_faction,
+		};
+//GROUP CONTROLS
+    L.control.layers(null, overlays, {collapsed:false}).addTo(map);
+
+		</script>
+	</body>
+</html>
